@@ -1,173 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Driver and Cars Information</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .form-container {
-            margin-bottom: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .main-form {
-            background-color: #f9f9f9;
-        }
-        .sub-form {
-            background-color: #e0f7fa;
-        }
-        h2 {
-            margin-top: 0;
-        }
-        .note {
-            font-size: 0.9em;
-            color: #555;
-            margin-top: 20px;
-            border-top: 1px solid #ccc;
-            padding-top: 10px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-    </style>
 </head>
+
 <body>
+    <header>
+        <h1>Конструирование форм</h1>
+    </header>
+    <main>
+        <div class="form-container main-form">
+            <h2>Информация о водителе</h2>
+            <form id="driverForm">
+                <label for="licenseNumber">Номер лицензии:</label>
+                <input type="text" id="licenseNumber" name="licenseNumber" required>
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="address">Адрес:</label>
+                <input type="text" id="address" name="address" required>
+                <label for="phone">Номер телефона:</label>
+                <input type="text" id="phone" name="phone" required>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
 
-    <div class="form-container main-form">
-        <h2>Информация о водителе</h2>
-        <form id="driverForm">
-            <label for="licenseNumber">Номер лицензии:</label>
-            <input type="text" id="licenseNumber" name="licenseNumber" required><br><br>
-            <label for="name">Имя:</label>
-            <input type="text" id="name" name="name" required><br><br>
-            <label for="address">Адрес:</label>
-            <input type="text" id="address" name="address" required><br><br>
-            <label for="phone">Номер телефона:</label>
-            <input type="text" id="phone" name="phone" required><br><br>
-            <button type="submit">Отправить</button>
-        </form>
-    </div>
+        <div class="form-container sub-form">
+            <h2>Информация о машине</h2>
+            <form id="carForm">
+                <label for="carNumber">Номер машины:</label>
+                <input type="text" id="carNumber" name="carNumber" required>
+                <label for="carLicenseNumber">Номер лицензии (Водитель):</label>
+                <input type="text" id="carLicenseNumber" name="licenseNumber" required>
+                <label for="brand">Бренд:</label>
+                <input type="text" id="brand" name="brand" required>
+                <label for="model">Модель:</label>
+                <input type="text" id="model" name="model" required>
+                <label for="color">Цвет:</label>
+                <input type="text" id="color" name="color" required>
+                <label for="yearOfManufacture">Год выпуска:</label>
+                <input type="number" id="yearOfManufacture" name="yearOfManufacture" required>
+                <label for="registrationDate">Дата регистрации:</label>
+                <input type="date" id="registrationDate" name="registrationDate" required>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
 
-    <div class="form-container sub-form">
-        <h2>Информация о машине</h2>
-        <form id="carForm">
-            <label for="carNumber">Номер машины:</label>
-            <input type="text" id="carNumber" name="carNumber" required><br><br>
-            <label for="carLicenseNumber">Номер лицензии (Водитель):</label>
-            <input type="text" id="carLicenseNumber" name="licenseNumber" required><br><br>
-            <label for="brand">Бренд:</label>
-            <input type="text" id="brand" name="brand" required><br><br>
-            <label for="model">Модель:</label>
-            <input type="text" id="model" name="model" required><br><br>
-            <label for="color">Цвет:</label>
-            <input type="text" id="color" name="color" required><br><br>
-            <label for="yearOfManufacture">Год выпуска</label>
-            <input type="number" id="yearOfManufacture" name="yearOfManufacture" required><br><br>
-            <label for="registrationDate">Дата регистрации:</label>
-            <input type="date" id="registrationDate" name="registrationDate" required><br><br>
-            <button type="submit">Отправить</button>
-        </form>
-    </div>
+        <table id="infoTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Номер лицензии</th>
+                    <th>Имя</th>
+                    <th>Адрес</th>
+                    <th>Номер телефона</th>
+                    <th>Номер машины</th>
+                    <th>Бренд</th>
+                    <th>Модель</th>
+                    <th>Цвет</th>
+                    <th>Год выпуска</th>
+                    <th>Дата регистрации</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
 
-    <div class="note">
-        Разработчик: Мельникова Анастасия Михайловна, группа 231-322
-    </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const driverForm = document.getElementById('driverForm');
+                const carForm = document.getElementById('carForm');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const driverForm = document.getElementById('driverForm');
-            const carForm = document.getElementById('carForm');
+                driverForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    handleSubmit();
+                });
 
-            driverForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                handleSubmit();
-            });
+                carForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    handleSubmit();
+                });
 
-            carForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                handleSubmit();
-            });
+                function handleSubmit() {
+                    const driverFormData = new FormData(driverForm);
+                    const carFormData = new FormData(carForm);
 
-            function handleSubmit() {
-                const driverFormData = new FormData(driverForm);
-                const carFormData = new FormData(carForm);
-
-                if (isFormComplete(driverFormData) && isFormComplete(carFormData)) {
-                    createTables(driverFormData, carFormData);
-                } else {
-                    alert('Please fill out all fields in both forms.');
-                }
-            }
-
-            function isFormComplete(formData) {
-                for (let value of formData.values()) {
-                    if (!value) {
-                        return false;
+                    if (isFormComplete(driverFormData) && isFormComplete(carFormData)) {
+                        createTable(driverFormData, carFormData);
+                    } else {
+                        alert('Please fill out all fields in both forms.');
                     }
                 }
-                return true;
-            }
 
-            function createTables(driverData, carData) {
-                const driverTable = document.createElement('table');
-                const carTable = document.createElement('table');
+                function isFormComplete(formData) {
+                    for (let value of formData.values()) {
+                        if (!value) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
 
-                const driverHeaders = ['License Number', 'Name', 'Address', 'Phone'];
-                const carHeaders = ['Car Number', 'License Number', 'Brand', 'Model', 'Color', 'Year of Manufacture', 'Registration Date'];
+                function createTable(driverData, carData) {
+                    const table = document.getElementById('infoTable');
+                    const tbody = table.querySelector('tbody');
+                    tbody.innerHTML = '';  // Очистка предыдущих данных
 
-                const driverRow = document.createElement('tr');
-                driverHeaders.forEach(header => {
-                    const th = document.createElement('th');
-                    th.textContent = header;
-                    driverRow.appendChild(th);
-                });
+                    const row = document.createElement('tr');
+                    const data = [
+                        driverData.get('licenseNumber'),
+                        driverData.get('name'),
+                        driverData.get('address'),
+                        driverData.get('phone'),
+                        carData.get('carNumber'),
+                        carData.get('brand'),
+                        carData.get('model'),
+                        carData.get('color'),
+                        carData.get('yearOfManufacture'),
+                        carData.get('registrationDate')
+                    ];
 
-                const carRow = document.createElement('tr');
-                carHeaders.forEach(header => {
-                    const th = document.createElement('th');
-                    th.textContent = header;
-                    carRow.appendChild(th);
-                });
+                    data.forEach(value => {
+                        const cell = document.createElement('td');
+                        cell.textContent = value;
+                        row.appendChild(cell);
+                    });
 
-                driverTable.appendChild(driverRow);
-                carTable.appendChild(carRow);
-
-                const driverDataRow = document.createElement('tr');
-                driverHeaders.forEach(key => {
-                    const td = document.createElement('td');
-                    td.textContent = driverData.get(key.toLowerCase().replace(' ', ''));
-                    driverDataRow.appendChild(td);
-                });
-
-                const carDataRow = document.createElement('tr');
-                carHeaders.forEach(key => {
-                    const td = document.createElement('td');
-                    td.textContent = carData.get(key.toLowerCase().replace(' ', ''));
-                    carDataRow.appendChild(td);
-                });
-
-                driverTable.appendChild(driverDataRow);
-                carTable.appendChild(carDataRow);
-
-                document.body.appendChild(driverTable);
-                document.body.appendChild(carTable);
-            }
-        });
-    </script>
-
+                    tbody.appendChild(row);
+                    table.style.display = 'table';
+                }
+            });
+        </script>
+    </main>
+    <footer>
+        <a href="key.html">К следующей странице</a>
+        <div class="note">
+            Разработчик: Мельникова Анастасия Михайловна, группа 231-322
+        </div>
+    </footer>
 </body>
+
 </html>
